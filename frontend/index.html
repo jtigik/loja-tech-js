@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LojaTech • Loja Virtual</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-slate-50">
+    <nav class="bg-white border-b sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-x-3">
+                <div class="w-10 h-10 bg-blue-600 rounded-2xl flex items-center justify-center">
+                    <i class="fa-solid fa-laptop text-white text-2xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-2xl font-bold text-slate-900">LojaTech</h1>
+                    <p class="text-xs text-slate-500 -mt-1">Tecnologia com qualidade</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-x-4">
+                <button onclick="showAddModal()" 
+                        class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-2xl text-sm font-semibold flex items-center gap-x-2">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>Novo Produto</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto px-6 py-8">
+        <div class="flex justify-between items-end mb-8">
+            <div>
+                <h2 class="text-3xl font-bold text-slate-900">Nossos Produtos</h2>
+                <p class="text-slate-600">Gerencie o catálogo da loja</p>
+            </div>
+            <div class="flex gap-x-3">
+                <input type="text" id="search" placeholder="Buscar produto..." 
+                    class="px-4 py-2.5 border rounded-2xl text-sm w-72" onkeyup="loadProducts()">
+                <select id="category-filter" onchange="loadProducts()" class="px-4 py-2.5 border rounded-2xl text-sm">
+                    <option value="">Todas categorias</option>
+                    <option value="Periféricos">Periféricos</option>
+                    <option value="Monitores">Monitores</option>
+                    <option value="Áudio">Áudio</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="products-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Produtos carregados via JS -->
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-[100]">
+        <div class="bg-white rounded-3xl w-full max-w-md p-6">
+            <h3 id="modal-title" class="text-xl font-bold mb-4">Novo Produto</h3>
+            
+            <form id="product-form" onsubmit="saveProduct(event)">
+                <input type="hidden" id="product-id">
+                
+                <div class="space-y-4">
+                    <div>
+                        <label class="text-sm font-medium">Nome do Produto</label>
+                        <input type="text" id="nome" required class="w-full mt-1 px-4 py-2.5 border rounded-2xl">
+                    </div>
+                    <div>
+                        <label class="text-sm font-medium">Descrição</label>
+                        <textarea id="descricao" class="w-full mt-1 px-4 py-2.5 border rounded-2xl" rows="2"></textarea>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="text-sm font-medium">Preço (R$)</label>
+                            <input type="number" step="0.01" id="preco" required class="w-full mt-1 px-4 py-2.5 border rounded-2xl">
+                        </div>
+                        <div>
+                            <label class="text-sm font-medium">Estoque</label>
+                            <input type="number" id="estoque" class="w-full mt-1 px-4 py-2.5 border rounded-2xl">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="text-sm font-medium">Categoria</label>
+                        <select id="categoria" class="w-full mt-1 px-4 py-2.5 border rounded-2xl">
+                            <option value="Periféricos">Periféricos</option>
+                            <option value="Monitores">Monitores</option>
+                            <option value="Áudio">Áudio</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="flex gap-x-3 mt-6">
+                    <button type="button" onclick="hideModal()" class="flex-1 py-3 rounded-2xl border">Cancelar</button>
+                    <button type="submit" class="flex-1 py-3 rounded-2xl bg-blue-600 text-white">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../backend/script.js"></script>
+</body>
+</html>
