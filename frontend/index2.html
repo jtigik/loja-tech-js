@@ -6,7 +6,10 @@
     <title>LojaTech • Loja Virtual</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        .product-card { transition: all 0.2s ease; }
+        .product-card:hover { transform: translateY(-6px); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1); }
+    </style>
 </head>
 <body class="bg-slate-50">
     <nav class="bg-white border-b sticky top-0 z-50">
@@ -38,7 +41,7 @@
             </div>
             <div class="flex gap-x-3">
                 <input type="text" id="search" placeholder="Buscar produto..." 
-                    class="px-4 py-2.5 border rounded-2xl text-sm w-72" onkeyup="loadProducts()">
+                       class="px-4 py-2.5 border rounded-2xl text-sm w-72" onkeyup="loadProducts()">
                 <select id="category-filter" onchange="loadProducts()" class="px-4 py-2.5 border rounded-2xl text-sm">
                     <option value="">Todas categorias</option>
                     <option value="Periféricos">Periféricos</option>

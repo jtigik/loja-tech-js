@@ -70,7 +70,7 @@ app.post('/api/produtos', async (req, res) => {
         }
 
         const sql = `INSERT INTO produtos (nome, descricao, preco, estoque, categoria, imagem_url) 
-                VALUES (?, ?, ?, ?, ?, ?)`;
+                     VALUES (?, ?, ?, ?, ?, ?)`;
         
         const [result] = await pool.execute(sql, [
             nome, descricao || null, preco, estoque || 0, categoria || null, imagem_url || null
@@ -121,7 +121,6 @@ app.delete('/api/produtos/:id', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`Estado da conexão: http://localhost:${PORT}/api/health`);
-    console.log(`🛒 LojaTech Backend rodando em http://localhost:${PORT}`);
+    console.log(`🛒 TechLoja Backend rodando em http://localhost:${PORT}`);
     console.log(`📦 API de produtos: http://localhost:${PORT}/api/produtos`);
 });
