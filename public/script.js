@@ -73,6 +73,8 @@ async function editProduct(id) {
     document.getElementById("estoque").value = product.estoque;
     document.getElementById("categoria").value =
         product.categoria || "Periféricos";
+    const imgInput = document.getElementById("imagem_url");
+    if (imgInput) imgInput.value = product.imagem_url || "";
 
     document.getElementById("modal-title").innerText = "Editar Produto";
     document.getElementById("modal").classList.remove("hidden");
@@ -95,6 +97,7 @@ async function saveProduct(e) {
         preco: parseFloat(document.getElementById("preco").value),
         estoque: parseInt(document.getElementById("estoque").value) || 0,
         categoria: document.getElementById("categoria").value,
+        imagem_url: document.getElementById("imagem_url")?.value || null,
     };
 
     try {
