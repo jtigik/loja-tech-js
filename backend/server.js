@@ -26,10 +26,8 @@ const pool = mysql.createPool(dbConfig);
 
 const path = require("path");
 
-// Servir arquivos estáticos (CSS, JS, imagens)
 app.use(express.static(path.join(__dirname, "../public")));
 
-// Rota principal - serve o index.html
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "../frontend/index.html"));
 });
